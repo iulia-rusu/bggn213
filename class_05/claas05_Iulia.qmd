@@ -1,0 +1,141 @@
+---
+title: "Class 5: Data Viz with ggplot"
+format: pdf
+editor: visual
+author: Iulia
+date: 01/24/24
+---
+
+## Graphics systems in R
+
+```{r}
+plot(cars)
+```
+
+
+How can we make this is in `ggplot` 
+
+
+To install any packageL use `install.packages()` function
+
+To use it we need to load up the package from the library. `library(ggplot2)`
+
+```{r}
+library(ggplot2)
+ggplot(cars)
+```
+Every ggplot has at least 3 things
+-**data** (data.frame)
+-**aesthetics**, aes, 
+-**geoms** (type of plot, line, points )
+```{r}
+pl <- ggplot(cars) +
+  aes(speed, dist) +
+  geom_point()
+```
+
+```{r}
+ggplot(cars) +
+  aes(speed, dist) +
+  geom_point() +
+  geom_smooth(method= "lm") +
+  labs(title= "Stopping Distance of Old Cars", x = "Speed", y= "Distance Covered") +
+  theme_bw() 
+
+
+
+ 
+```
+```{r}
+library(patchwork)
+(pl|pl)
+```
+url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
+genes <- read.delim(url)
+head(genes)
+
+```{r}
+url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
+genes <- read.delim(url)
+head(genes)
+
+```
+```{r}
+nrow(genes)
+colnames(genes)
+ncol(genes)
+```
+
+
+```{r}
+table(genes$State) 
+```
+
+```{r}
+ncol(genes)
+```
+
+```{r}
+round (table(genes$State) / nrow(genes) *100, 2)
+```
+
+```{r}
+ggplot(genes) +
+  aes(x = Condition1, y = Condition2, col = State) +
+  geom_point() +
+  theme_classic()
+
+```
+```{r}
+p <- ggplot(genes) +
+  aes(x = Condition1, y = Condition2, col = State, name = Gene) +
+  geom_point(alpha = 0.5) +
+  theme_classic()
+```
+
+```{r}
+p + scale_colour_manual( values=c("blue","gray","red") )
+```
+
+```{r}
+p + scale_colour_manual(values=c("blue","gray","red")) +
+    labs(title="Gene Expresion",
+         x="Control ", y="Drug Treatment") 
+    
+  
+```
+
+
+```{r}
+library(gapminder)
+url1 <- "https://raw.githubusercontent.com/jennybc/gapminder/master/inst/extdata/gapminder.tsv"
+
+gapminder <- read.delim(url1)
+```
+
+```{r}
+#| message: false
+#library(plotly)
+#ggplotly(p)
+```
+
+```{r}
+
+library(dplyr)
+
+gapminder_2007 <- gapminder %>% filter(year==2007)
+```
+```{r}
+head(gapminder_2007)
+```
+```{r}
+ggplot(gapminder_2007) +
+  aes(x = lifeExp, y = gdpPercap, color=continent, size=pop ) +
+  geom_point(alpha = 0.5)
+```
+```{r}
+ggplot(gapminder_2007) + 
+  aes(x = gdpPercap, y = lifeExp, color = pop) +
+  geom_point(alpha=0.8)
+```
+
