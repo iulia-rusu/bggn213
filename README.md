@@ -4,7 +4,7 @@ My classwork for W24 at UC San Diego [BGGN213 at UC San Diego](https://www.iulia
 ## Contents
 - Class 5: [Data visualization with ggplot]()
 
-- CLass 6: [R Functions]()
+- CLass 6: [R Functions](https://github.com/iulia-rusu/bggn213/blob/main/class_06/class-06.md)
 
 - Class 7: [Machine Learninng for Bioifinromatitions]()
 
